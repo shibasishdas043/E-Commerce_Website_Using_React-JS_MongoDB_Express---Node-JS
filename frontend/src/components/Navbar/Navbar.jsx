@@ -5,12 +5,10 @@ import data_product from "../assets/Frontend_Assets/data.js";
 
 import logo from "../assets/Frontend_Assets/logo.png";
 import cart_icon from "../assets/Frontend_Assets/cart_icon.png";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [menu, setMenu] = useState('shop');
-
-
-
+  const [menu, setMenu] = useState("shop");
 
   return (
     <div className="navbar">
@@ -19,17 +17,39 @@ const Navbar = () => {
         <p>SHOPPER</p>
       </div>
       <ul className="nav-menu">
-          <li onClick={()}>Shop <hr /></li>
-          <li onClick={()}>Men</li>
-          <li onClick={()}>Woman</li>
-          <li onClick={()}>Kids</li>
+        <li onClick={() => setMenu("shop")}>
+          <Link style={{ textDecoration: "none" }} to={"/"}>
+            Shop
+          </Link>
+          {menu === "shop" ? <hr /> : null}
+        </li>
+        <li onClick={() => setMenu("mens")}>
+          <Link style={{ textDecoration: "none" }} to={"/mens"}>
+            Men
+          </Link>
+          {menu === "mens" ? <hr /> : null}
+        </li>
+        <li onClick={() => setMenu("womans")}>
+          <Link style={{ textDecoration: "none" }} to={"/womans"}>
+            woman
+          </Link>
+          {menu === "womans" ? <hr /> : null}
+        </li>
+        <li onClick={() => setMenu("kids")}>
+          <Link style={{ textDecoration: "none" }} to={"/kids"}>
+            Kids
+          </Link>
+          {menu === "kids" ? <hr /> : null}
+        </li>
       </ul>
       <div className="nav-login-cart">
-        <button>Login</button>
-        <img src={cart_icon} alt="" />
-        <div className="nav-cart-count">
-          0
-        </div>
+        <Link style={{ textDecoration: "none" }} to={"/login"}>
+          <button>Login</button>
+        </Link>
+        <Link style={{ textDecoration: "none" }} to={"/cart"}>
+          <img src={cart_icon} alt="" />
+        </Link>
+        <div className="nav-cart-count">0</div>
       </div>
     </div>
   );
